@@ -40,7 +40,22 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 
     @Override
     public T removeFirst() throws EmptyCollectionException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.isEmpty()) {
+            throw new EmptyCollectionException("Lista vazia");
+        }
+        
+        DoubleNode<T> tmp = this.head;
+        
+        this.head = this.head.getNext();
+        
+       //rr ligaçoes
+       tmp.setNext(null);
+       this.head.setPrevious(null);
+       
+       this.count--;
+       
+       return tmp.getElement();
+       
 
     }
 
@@ -78,6 +93,24 @@ public class DoubleLinkedList<T> implements ListADT<T> {
     public int size() {
         return this.count;
     }
+
+    @Override
+    public String toString() {
+        String str ="";
+        
+        DoubleNode<T> current = this.head;
+
+        while (current != null) {
+            str+=current.getElement().toString();
+            str+="\n";
+            current = current.getNext();
+        }
+        
+        str+="Count="+this.count;
+        return str;
+    }
+    
+    
 
     @Override
     public Iterator<T> iterator() {

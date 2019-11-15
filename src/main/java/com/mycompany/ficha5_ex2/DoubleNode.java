@@ -88,5 +88,5 @@ public class DoubleNode<E> {
     public void setElement(E elem) {
         element = elem;
     }
-
+    
 }

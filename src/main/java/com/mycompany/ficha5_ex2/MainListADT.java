@@ -14,10 +14,10 @@ public class MainListADT {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws EmptyCollectionException {
         DoubleLinkedList lista1 = new DoubleLinkedList();
 
-        int teste = 2;
+        int teste = 4;
 
         switch (teste) {
             case 0: //teste size com lista vazia
@@ -40,6 +40,22 @@ public class MainListADT {
                 lista1.add(2);
                 lista1.add(3);
                 System.out.println(lista1.isEmpty());
+                break;
+
+            case 4: //teste removeFist com elementos
+                lista1.add(1);
+                lista1.add(2);
+                lista1.add(3);
+                System.out.println(lista1.toString());
+                lista1.removeFirst();
+                System.out.println(lista1.toString());
+
+                break;
+
+            case 5: //teste removeFist sem elementos
+                lista1.removeFirst();
+                System.out.println(lista1.toString());
+
                 break;
 
         }
