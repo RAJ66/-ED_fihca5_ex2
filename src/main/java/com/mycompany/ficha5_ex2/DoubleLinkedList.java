@@ -11,8 +11,8 @@ import java.util.Iterator;
  *
  * @author vitor
  */
-public class DoubleLinkedList<T> implements ListADT<T>{
-    
+public class DoubleLinkedList<T> implements ListADT<T> {
+
     private int count;
     private DoubleNode<T> head;
     private DoubleNode<T> tail;
@@ -22,23 +22,26 @@ public class DoubleLinkedList<T> implements ListADT<T>{
         this.head = null;
         this.tail = null;
     }
-    
-    
 
-    public void add(T novo){
+    public void add(T novo) {
         DoubleNode<T> newNode = new DoubleNode<>(novo);
-        /*
-        if(this.count ==0){
-             this.head = newNode;
-            this.tail = newNode;}
-        else {
-            this.head.
-        }*/
+
+        if (this.count == 0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            this.head.setPrevious(newNode);
+            newNode.setNext(this.head);
+            this.head = newNode;
+        }
+
+        this.count++;
     }
-    
+
     @Override
     public T removeFirst() throws EmptyCollectionException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
@@ -68,17 +71,17 @@ public class DoubleLinkedList<T> implements ListADT<T>{
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.count == 0;
     }
 
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.count;
     }
 
     @Override
     public Iterator<T> iterator() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
