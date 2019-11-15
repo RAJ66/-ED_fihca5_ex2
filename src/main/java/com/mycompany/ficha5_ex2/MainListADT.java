@@ -17,7 +17,7 @@ public class MainListADT {
     public static void main(String[] args) throws EmptyCollectionException {
         DoubleLinkedList lista1 = new DoubleLinkedList();
 
-        int teste = 4;
+        int teste = 9;
 
         switch (teste) {
             case 0: //teste size com lista vazia
@@ -54,6 +54,36 @@ public class MainListADT {
 
             case 5: //teste removeFist sem elementos
                 lista1.removeFirst();
+                System.out.println(lista1.toString());
+
+                break;
+
+            case 6: //teste removeFist com 1 elemento
+                lista1.add(1);
+                lista1.removeFirst();
+                System.out.println(lista1.toString());
+
+                break;
+
+            case 7: //teste removeLast sem elementos
+                lista1.removeLast();
+                System.out.println(lista1.toString());
+
+                break;
+
+            case 8: //teste removeLast com varios elementos elementos
+                lista1.add(1);
+                lista1.add(2);
+                lista1.add(3);
+                lista1.removeLast();
+                System.out.println(lista1.toString());
+
+                break;
+                
+                 case 9: //teste removeLast com um elemento
+                lista1.add(1);
+                
+                lista1.removeLast();
                 System.out.println(lista1.toString());
 
                 break;
