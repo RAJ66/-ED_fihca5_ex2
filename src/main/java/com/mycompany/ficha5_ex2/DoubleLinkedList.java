@@ -70,7 +70,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
             this.head = null;
             this.tail = null;
         } else {
-            this.tail=this.tail.getPrevious();
+            this.tail = this.tail.getPrevious();
             tmp.setPrevious(null);
             this.tail.setNext(null);
         }
@@ -81,7 +81,46 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 
     @Override
     public T remove(T element) throws EmptyCollectionException, ElementoNaoExisteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.isEmpty()) {
+            throw new EmptyCollectionException("Lista vazia");
+        }
+
+        T tmp;
+
+        if (element.equals(this.head.getElement())) {
+            tmp = this.removeFirst();
+        } else if (element.equals(this.tail.getElement())) {
+            tmp = this.removeLast();
+        } else {
+
+            DoubleNode<T> current = this.head.getNext();
+
+            boolean found = false;
+
+            while (!found && current != null) {
+                if (element.equals(current.getElement())) {
+                    found = true;
+                } else {
+                    current = current.getNext();
+                }
+
+            }
+
+            if (!found) {
+                throw new ElementoNaoExisteException("Ñao existe na lista");
+            }
+
+            (current.getPrevious()).setNext(current.getNext());
+            (current.getNext()).setPrevious(current.getPrevious());
+
+            current.setNext(null);
+            current.setPrevious(null);
+
+            tmp = current.getElement();
+            this.count--;
+        }
+
+        return tmp;
     }
 
     @Override

@@ -14,10 +14,10 @@ public class MainListADT {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws EmptyCollectionException {
+    public static void main(String[] args) throws EmptyCollectionException, ElementoNaoExisteException {
         DoubleLinkedList lista1 = new DoubleLinkedList();
 
-        int teste = 9;
+        int teste = 15;
 
         switch (teste) {
             case 0: //teste size com lista vazia
@@ -79,11 +79,67 @@ public class MainListADT {
                 System.out.println(lista1.toString());
 
                 break;
-                
-                 case 9: //teste removeLast com um elemento
+
+            case 9: //teste removeLast com um elemento
                 lista1.add(1);
-                
+
                 lista1.removeLast();
+                System.out.println(lista1.toString());
+
+                break;
+
+            case 10: //teste remove sem ter elementos
+                lista1.remove(1);
+                System.out.println(lista1.toString());
+
+                break;
+
+            case 11: //teste remove com um elemento
+                lista1.add(1);
+                lista1.remove(1);
+                System.out.println(lista1.toString());
+
+                break;
+
+            case 12: //teste remove o head
+                lista1.add(1);
+                lista1.add(2);
+                lista1.add(3);
+
+                lista1.remove(3);
+                System.out.println(lista1.toString());
+
+                break;
+
+            case 13: //teste remove o tail
+                lista1.add(1);
+                lista1.add(2);
+                lista1.add(3);
+
+                lista1.remove(1);
+                System.out.println(lista1.toString());
+
+                break;
+
+            case 14: //teste remove a meio
+                lista1.add(1);
+                lista1.add(2);
+                lista1.add(3);
+
+                lista1.remove(2);
+                System.out.println(lista1.toString());
+
+                break;
+
+            case 15: //teste remove a meio
+                lista1.add(1);
+                lista1.add(2);
+                lista1.add(3);
+                lista1.add(4);
+                lista1.add(5);
+                lista1.add(6);
+
+                lista1.remove(3);
                 System.out.println(lista1.toString());
 
                 break;
