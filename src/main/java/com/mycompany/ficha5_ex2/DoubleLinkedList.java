@@ -125,12 +125,19 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 
     @Override
     public T first() throws EmptyCollectionException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.isEmpty()) {
+            throw new EmptyCollectionException("Lista Vazia!");
+        }
+        return this.head.getElement();
     }
 
     @Override
+
     public T last() throws EmptyCollectionException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.isEmpty()) {
+            throw new EmptyCollectionException("Lista Vazia!");
+        }
+        return this.tail.getElement();
     }
 
     @Override
