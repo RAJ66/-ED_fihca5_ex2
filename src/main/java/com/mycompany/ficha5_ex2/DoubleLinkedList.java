@@ -141,8 +141,29 @@ public class DoubleLinkedList<T> implements ListADT<T> {
     }
 
     @Override
-    public boolean contains(T target) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean contains(T target) throws EmptyCollectionException {
+        if (this.isEmpty()) {
+            throw new EmptyCollectionException("Lista Vazia!");
+        }
+
+        DoubleNode<T> current = this.head;
+
+        boolean found = false;
+
+        while (!found && current != null) {
+            if (target.equals(current.getElement())) {
+                found = true;
+            } else {
+                current = current.getNext();
+            }
+
+        }
+
+        if (!found) {
+            throw new EmptyCollectionException("Ñao existe na lista");
+        }
+
+        return true;
     }
 
     @Override

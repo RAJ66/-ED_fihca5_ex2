@@ -17,7 +17,7 @@ public class MainListADT {
     public static void main(String[] args) throws EmptyCollectionException, ElementoNaoExisteException {
         DoubleLinkedList lista1 = new DoubleLinkedList();
 
-        int teste = 15;
+        int teste = 19;
 
         switch (teste) {
             case 0: //teste size com lista vazia
@@ -140,6 +140,40 @@ public class MainListADT {
                 lista1.add(6);
 
                 lista1.remove(3);
+                System.out.println(lista1.toString());
+
+                break;
+
+            case 16: //teste contains numa lista vazia
+
+                System.out.println(lista1.contains(1));
+                System.out.println(lista1.toString());
+
+                break;
+
+            case 17: //teste contains numa lista o primeiro
+                lista1.add(1);
+                lista1.add(2);
+                lista1.add(3);
+                System.out.println(lista1.contains(3));
+                System.out.println(lista1.toString());
+
+                break;
+
+            case 18: //teste contains numa lista o ultimo
+                lista1.add(1);
+                lista1.add(2);
+                lista1.add(3);
+                System.out.println(lista1.contains(1));
+                System.out.println(lista1.toString());
+
+                break;
+
+            case 19: //teste contains numa lista a meio
+                lista1.add(1);
+                lista1.add(2);
+                lista1.add(3);
+                System.out.println(lista1.contains(2));
                 System.out.println(lista1.toString());
 
                 break;
