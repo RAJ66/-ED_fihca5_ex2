@@ -194,7 +194,43 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 
     @Override
     public Iterator<T> iterator() {
+        
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    
+     private class MyItr implements Iterator<T> {
+         
+        int expectedModCount;
+        boolean okToRemove;
+        
+        /**
+         * Creates an Iterator.
+         *
+         */
+        MyItr() {
+            //proxima coisa a fazer neste projecto e colocar o modcount
+            this.expectedModCount = modCount;
+            okToRemove = false;
+        }
+         
+
+        @Override
+        public boolean hasNext() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public T next() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public void remove() {
+            Iterator.super.remove(); //To change body of generated methods, choose Tools | Templates.
+        }
+     }
+    
+    
 
 }
