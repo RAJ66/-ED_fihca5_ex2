@@ -14,11 +14,13 @@ import java.util.Iterator;
 public class DoubleLinkedList<T> implements ListADT<T> {
 
     private int count;
+    protected int modCount;
     private DoubleNode<T> head;
     private DoubleNode<T> tail;
 
     public DoubleLinkedList() {
         this.count = 0;
+        this.modCount = 0;
         this.head = null;
         this.tail = null;
     }
@@ -36,6 +38,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
         }
 
         this.count++;
+        this.modCount++;
     }
 
     @Override
@@ -56,6 +59,8 @@ public class DoubleLinkedList<T> implements ListADT<T> {
         }
 
         this.count--;
+        this.modCount++;
+
         return tmp.getElement();
 
     }
@@ -76,6 +81,8 @@ public class DoubleLinkedList<T> implements ListADT<T> {
         }
 
         this.count--;
+        this.modCount++;
+
         return tmp.getElement();
     }
 
@@ -118,6 +125,8 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 
             tmp = current.getElement();
             this.count--;
+            this.modCount++;
+
         }
 
         return tmp;
@@ -194,16 +203,15 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 
     @Override
     public Iterator<T> iterator() {
-        
+
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-     private class MyItr implements Iterator<T> {
-         
+
+    private class MyItr implements Iterator<T> {
+
         int expectedModCount;
         boolean okToRemove;
-        
+
         /**
          * Creates an Iterator.
          *
@@ -213,7 +221,6 @@ public class DoubleLinkedList<T> implements ListADT<T> {
             this.expectedModCount = modCount;
             okToRemove = false;
         }
-         
 
         @Override
         public boolean hasNext() {
@@ -229,8 +236,6 @@ public class DoubleLinkedList<T> implements ListADT<T> {
         public void remove() {
             Iterator.super.remove(); //To change body of generated methods, choose Tools | Templates.
         }
-     }
-    
-    
+    }
 
 }
