@@ -213,6 +213,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
         int expectedModCount;
         boolean okToRemove;
         DoubleNode<T> current;
+        DoubleNode<T> previous;
 
         /**
          * Creates an Iterator.
@@ -230,7 +231,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
             if (this.expectedModCount != modCount) {
                 throw new ConcurrentModificationException("Lista imcompativel!");
             }
-            return this.current !=null;    
+            return this.current != null;
         }
 
         @Override
@@ -238,14 +239,32 @@ public class DoubleLinkedList<T> implements ListADT<T> {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
+
             this.okToRemove = true;
+            
+             previous = this.current;
+            
             this.current = this.current.getNext();
-            return this.current.getPrevious().getElement(); 
+            return previous.getElement();
         }
 
         @Override
         public void remove() {
-            Iterator.super.remove(); //To change body of generated methods, choose Tools | Templates.
+            if (this.expectedModCount != modCount) {
+                throw new ConcurrentModificationException("modCount incompativel");
+            }
+            if (!okToRemove) {
+                throw new NoSuchElementException("impossivel remover");
+            }
+            try {
+                DoubleLinkedList.this.remove(this.previous.getElement());
+
+                this.expectedModCount = modCount;
+                this.okToRemove = false;
+            } catch (EmptyCollectionException | ElementoNaoExisteException ex) {
+                throw new ConcurrentModificationException();
+            }
+            
         }
     }
 
