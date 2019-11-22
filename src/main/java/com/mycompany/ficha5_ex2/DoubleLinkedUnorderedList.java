@@ -8,14 +8,41 @@ package com.mycompany.ficha5_ex2;
 /**
  *
  * @author vitor
+ * @param <T>
  */
-public class DoubleLinkedUnorderedList {
+public class DoubleLinkedUnorderedList<T> extends DoubleLinkedList<T> implements UnorderedListADT<T>{
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    
+    
+    @Override
+    public void addToFront(T element) {
+         DoubleNode<T> newNode = new DoubleNode<>(element);
+
+        if (this.count == 0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            this.head.setPrevious(newNode);
+            newNode.setNext(this.head);
+            this.head = newNode;
+        }
+
+        this.count++;
+        this.modCount++;
     }
+
+    @Override
+    public void addToRear(T element) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addAfter(T element, T atual) throws ElementoNaoExisteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+
+    
     
 }
