@@ -10,13 +10,11 @@ package com.mycompany.ficha5_ex2;
  * @author vitor
  * @param <T>
  */
-public class DoubleLinkedUnorderedList<T> extends DoubleLinkedList<T> implements UnorderedListADT<T>{
+public class DoubleLinkedUnorderedList<T> extends DoubleLinkedList<T> implements UnorderedListADT<T> {
 
-    
-    
     @Override
     public void addToFront(T element) {
-         DoubleNode<T> newNode = new DoubleNode<>(element);
+        DoubleNode<T> newNode = new DoubleNode<>(element);
 
         if (this.count == 0) {
             this.head = newNode;
@@ -33,16 +31,57 @@ public class DoubleLinkedUnorderedList<T> extends DoubleLinkedList<T> implements
 
     @Override
     public void addToRear(T element) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        DoubleNode<T> newNode = new DoubleNode<>(element);
+
+        if (this.count == 0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            this.tail.setNext(newNode);
+            newNode.setPrevious(this.tail);
+            this.tail = newNode;
+        }
+
+        this.count++;
+        this.modCount++;
+    }
+
+    private DoubleNode<T> find(T element) {
+        DoubleNode<T> current = this.head;
+
+        while (current != null) {
+            if (current.getElement().equals(element)) {
+                return current;
+            }
+            current = current.getNext();
+        }
+        return null;
     }
 
     @Override
     public void addAfter(T element, T atual) throws ElementoNaoExisteException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //procurar
+        DoubleNode<T> current = find(atual);
+
+        if (current == null) {
+            throw new ElementoNaoExisteException("Elemento nao existe na lista");
+        }
+
+        //comparar com o tail
+        if (current.equals(this.tail)) {
+            addToRear(element);
+        } else {
+
+            //meter depois
+            DoubleNode<T> newNode = new DoubleNode<>(element);
+
+            newNode.setPrevious(current);
+            newNode.setNext(current.getNext());
+
+            current.setNext(newNode);
+            (newNode.getNext()).setPrevious(newNode);
+        }
+
     }
 
-    
-
-    
-    
 }
