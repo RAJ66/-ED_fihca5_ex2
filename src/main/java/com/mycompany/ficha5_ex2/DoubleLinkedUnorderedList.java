@@ -80,6 +80,9 @@ public class DoubleLinkedUnorderedList<T> extends DoubleLinkedList<T> implements
 
             current.setNext(newNode);
             (newNode.getNext()).setPrevious(newNode);
+            
+            this.count++;
+            this.modCount++;
         }
 
     }
