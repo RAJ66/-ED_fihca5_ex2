@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.ficha5_ex2;
 
 /**
@@ -40,8 +35,24 @@ public class DoubleLinkedOrderedList<T> extends DoubleLinkedList<T> implements O
                 newNode.setPrevious(this.tail);
                 this.tail.setNext(newNode);
                 this.tail = newNode;
+            } else {
+                DoubleNode<T> current = this.head.getNext();
+                boolean adicionado = false;
+                while (current != null && adicionado == false) {
+                    if (x.compareTo(current.getElement()) < 0) {
+                        newNode.setNext(current);
+                        newNode.setPrevious(current.getPrevious());
+                        (current.getPrevious()).setNext(newNode);
+                        current.setPrevious(newNode);
+                        adicionado = true;
+
+                    }
+                    current = current.getNext();
+                }
 
             }
+
+            //estar no meio
             this.count++;
             this.modCount++;
         }
